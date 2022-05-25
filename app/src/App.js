@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route path="/cart" element={<CartPage /> }/>
+        <Route path="/cart/:id" element={<CartPage /> }/>
       </Routes>
     </BrowserRouter>
   );

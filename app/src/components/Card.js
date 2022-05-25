@@ -4,11 +4,9 @@ import Card from "@mui/material/Card";
 import { Grid } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import datas from "../datas/data";
 import TabsPro from "./TabsPro";
-import { Link, Router } from "react-router-dom";
 
 export default function OutlinedCard() {
   return (
@@ -28,7 +26,7 @@ export default function OutlinedCard() {
                       {el.plan}
                     </Typography>
 
-                    <TabsPro monthly={el.monthly} yearly={el.yearly} />
+                    <TabsPro el={el} id={id}/>
                     <Typography variant="h5" component="div"></Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                       adjective
