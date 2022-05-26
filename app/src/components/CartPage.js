@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
+import { useSelector } from "react-redux";
+import { selectAmount} from '../features/amountSlice';
 import StripeContainer from "./StripeContainer";
 import {
   Button,
@@ -15,15 +17,13 @@ import {
 } from "@mui/material";
 
 const CartPage = (props) => {
-  const location = useLocation();
-  const state = location.state;
-  console.log(state);
+  const amount = useSelector(selectAmount);
+  // const location = useLocation();
+  // const state = location.state;
+  // console.log(state);
   const [showItem, setShowItem] = useState(false);
   const [showButton, setShowButton] = useState(false);
-  const setShow = () => {
-    setShowItem(false);
-  };
-
+ 
   const validationSchema = Yup.object().shape({
     fullname: Yup.string().required("Fullname is required"),
     username: Yup.string()
@@ -94,7 +94,7 @@ const CartPage = (props) => {
           </Formik>
           {showButton ? (
             <>
-              <h3>${state}</h3>
+              <h3>${amount}</h3>
               <Button
                 variant="contained"
                 sx={{ width: "100%" }}
@@ -118,7 +118,7 @@ const CartPage = (props) => {
                   color="text.primary"
                   gutterBottom
                 >
-                  ${state}
+                  ${amount}
                 </Typography>
                 <Typography variant="h5" component="div"></Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -130,7 +130,7 @@ const CartPage = (props) => {
                   {'"a benevolent smile"'}
                 </Typography>
               </CardContent>
-              {showItem ? <StripeContainer amount={state} /> : <></>}
+              {showItem ? <StripeContainer /> : <></>}
             </React.Fragment>
           </Card>
         </Box>

@@ -8,7 +8,7 @@ const stripeTestPromise = loadStripe(process.env.REACT_APP_API_KEY);
 export default function StripeContainer(props) {
   return (
     <Elements stripe={stripeTestPromise} style={{width:"100%"}} >
-      <PaymentOption amount={props.amount}/>
+      <PaymentOption/>
     </Elements>
   );
 }

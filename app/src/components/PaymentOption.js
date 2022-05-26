@@ -11,6 +11,8 @@ import {
   useElements,
   useStripe
 } from "@stripe/react-stripe-js";
+import { useSelector } from "react-redux";
+import { selectAmount} from '../features/amountSlice';
 
 
 const CARD_OPTIONS = {
@@ -117,7 +119,7 @@ const CheckoutForm = (props) => {
   const [billingDetails, setBillingDetails] = useState({
     name: ""
   });
-
+  const amount = useSelector(selectAmount);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -202,7 +204,7 @@ const CheckoutForm = (props) => {
       </fieldset>
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
       <SubmitButton processing={processing} error={error} disabled={!stripe}>
-        Pay ${props.amount}
+        Pay ${amount}
       </SubmitButton>
     </form>
   );
